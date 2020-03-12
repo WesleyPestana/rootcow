@@ -1,0 +1,95 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Produto</h4>
+            <p class="card-category">Incluir produto</p>
+          </div>
+          <div class="card-body">
+
+            <form method="POST">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Nome</label>
+                    <input type="text" class="form-control" name="nome" value="{{ nome }}" required autocomplete="off">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Quantidade</label>
+                    <input type="number" class="form-control" name="quantidade" value="{{ quantidade }}" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Valor Compra</label>
+                    <input type="text" class="form-control" name="valor_compra" value="{{ valor_compra }}" required autocomplete="off">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Valor Venda</label>
+                    <input type="text" class="form-control" name="valor_venda" value="{{ valor_venda }}" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Descrição</label>
+                    <input type="text" class="form-control" name="descricao" value="{{ descricao }}" required autocomplete="off">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mt-4">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Categoria</label>
+                    <select class="form-control" name="id_categoria" required>
+                      <option disabled="disabled" selected="selected" value="">Selecione...</option>
+                      {% if categoria_bd %}
+                      <option selected value="{{ categoria_bd.id_categoria }}">{{ categoria_bd.nome }} - {{ categoria_bd.descricao }}</option>
+                      {% endif %}
+                      {% for categoria in categorias %}
+                      <option value="{{ categoria.id_categoria }}">{{ categoria.nome }} - {{ categoria.descricao }}</option>
+                      {% endfor %}
+                  </select>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-4">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Fornecedor</label>
+                    <select class="form-control" name="id_fornecedor" required>
+                      <option disabled="disabled" selected="selected" value="">Selecione...</option>
+                      {% if fornecedor_bd %}
+                      <option selected value="{{ fornecedor_bd.id_fornecedor }}">{{ fornecedor_bd.nome }} - {{ fornecedor_bd.email }}</option>
+                      {% endif %}
+                      {% for fornecedor in fornecedores %}
+                      <option value="{{ fornecedor.id_fornecedor }}">{{ fornecedor.nome }} - {{ fornecedor.email }}</option>
+                      {% endfor %}
+                  </select>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary pull-right">{{botao}}</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

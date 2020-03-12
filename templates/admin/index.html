@@ -1,0 +1,103 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning
+                        card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">perm_contact_calendar</i>
+                        </div>
+                        <p class="card-category">Clientes</p>
+                        <h3 class="card-title">{{clientes}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">settings</i>
+                            <a href="/clientes/" class="text-muted">Gerenciar todos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-success
+                        card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">local_shipping</i>
+                        </div>
+                        <p class="card-category">Fornecedores</p>
+                        <h3 class="card-title">{{fornecedores}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">settings</i>
+                            <a href="/fornecedores/" class="text-muted">Gerenciar todos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger
+                        card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">apartment</i>
+                        </div>
+                        <p class="card-category">Instituições</p>
+                        <h3 class="card-title">{{instituicoes}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">settings</i>
+                            <a href="/instituicoes/" class="text-muted">Gerenciar todos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-info
+                        card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">category</i>
+                        </div>
+                        <p class="card-category">Categorias</p>
+                        <h3 class="card-title">{{categorias}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">settings</i>
+                            <a href="/categorias/" class="text-muted">Gerenciar todos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header
+                        card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">shopping_basket</i>
+                        </div>
+                        <p class="card-category">Produtos</p>
+                        <h3 class="card-title">{{produtos}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">settings</i>
+                            <a href="/produtos/" class="text-muted">Gerenciar todos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}

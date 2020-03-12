@@ -1,0 +1,96 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div id="modalMessage" class="alert alert-{{ category }} col-md-5 mb-5 container-fluid" onclick="javascript:hideFlash();">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="material-icons">close</i>
+                </button>
+                <span>
+                <b>{{ message|capitalize }}</b>
+                </span>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="card mt-1">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Categorias</h4>
+            <p class="card-category">Gerenciamento de categorias</p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <a href="/categorias/nova/" class="btn btn-primary">Adicionar categoria</a>
+                <hr>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th colspan="2">Ações</th>
+                </thead>
+                <tbody>
+                  {% for categoria in categorias %}
+                  <tr>
+                    <td>{{ categoria.id_categoria }}</td>
+                    <td>{{ categoria.nome }}</td>
+                    <td>{{ categoria.descricao }}</td>
+                    <th><a href="/categorias/{{categoria.id_categoria}}"><i class="material-icons">edit</i></a></th>
+                    <th><button class="btn btn-primary" id="{{ categoria.id_categoria }}" onclick="javascript:excluir_categoria(this.id);"><i class="material-icons">delete</i></button></th>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function excluir_categoria(id_categoria) {
+    swal({
+        title: 'Excluir',
+        text: 'Tem certeza que deseja excluir este item?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, excluir!',
+        cancelButtonText: 'Não',
+        confirmButtonClass: "btn btn-primary",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false
+        }).then((result) => {
+            if (result.value) {
+                xhr = new XMLHttpRequest();
+                xhr.open('DELETE', '/categorias/' + id_categoria + '/');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (xhr.readyState !== 4) return;
+                    if (xhr.status === 200) {
+                        window.location.reload();
+                    } else {
+                        alert('Erro ' + xhr.status);
+                    }
+                };
+                xhr.send();
+            }
+        });
+  }
+</script>
+
+{% endblock %}

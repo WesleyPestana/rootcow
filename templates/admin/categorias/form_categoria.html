@@ -1,0 +1,46 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title">Categoria</h4>
+              <p class="card-category">Incluir Categoria</p>
+            </div>
+            <div class="card-body">
+
+              <form method="POST">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Nome</label>
+                      <input type="text" class="form-control" name="nome" value="{{ nome }}" required autocomplete="off">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Descrição</label>
+                      <input type="text" class="form-control" name="descricao" value="{{ descricao }}" required autocomplete="off">
+                    </div>
+                  </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary pull-right">{{ botao }}</button>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

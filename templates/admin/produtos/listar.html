@@ -1,0 +1,104 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div id="modalMessage" class="alert alert-{{ category }} col-md-5 mb-5 container-fluid" onclick="javascript:hideFlash();">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="material-icons">close</i>
+                </button>
+                <span>
+                <b>{{ message|capitalize }}</b>
+                </span>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="card mt-1">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Produtos</h4>
+            <p class="card-category">Gerenciamento de produtos</p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <a href="/produtos/novo/" class="btn btn-primary">Adicionar produto</a>
+                <hr>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Quantidade</th>
+                  <th>Valor Compra</th>
+                  <th>Valor Venda</th>
+                  <th>Categoria</th>
+                  <th>Fornecedor</th>
+                  <th colspan="2">Ações</th>
+                </thead>
+                <tbody>
+                  {% for produto in produtos %}
+                  <tr>
+                    <td>{{ produto.id_produto }}</td>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.quantidade }}</td>
+                    <td>R$ {{ produto.valor_compra }}</td>
+                    <td>R$ {{ produto.valor_venda }}</td>
+                    <td>{{ produto.categoria.nome }}</td>
+                    <td>{{ produto.fornecedor.nome }}</td>
+                    <th><a href="/produtos/{{ produto.id_produto }}"><i class="material-icons">edit</i></a></th>
+                    <th><button  class="btn btn-primary" id="{{ produto.id_produto }}" onclick="javascript:excluir_produto(this.id);"><i class="material-icons">delete</i></button></th>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function excluir_produto(id_produto) {
+    swal({
+        title: 'Excluir',
+        text: 'Tem certeza que deseja excluir este item?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, excluir!',
+        cancelButtonText: 'Não',
+        confirmButtonClass: "btn btn-primary",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false
+        }).then((result) => {
+            if (result.value) {
+                xhr = new XMLHttpRequest();
+                xhr.open('DELETE', '/produtos/' + id_produto + '/');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (xhr.readyState !== 4) return;
+                    if (xhr.status === 200) {
+                        window.location.reload();
+                    } else {
+                        alert('Erro ' + xhr.status);
+                    }
+                };
+                xhr.send();
+            }
+        });
+  }
+</script>
+
+{% endblock %}

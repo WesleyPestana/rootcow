@@ -1,0 +1,100 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div id="modalMessage" class="alert alert-{{ category }} col-md-5 mb-5 container-fluid" onclick="javascript:hideFlash();">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="material-icons">close</i>
+                </button>
+                <span>
+                <b>{{ message|capitalize }}</b>
+                </span>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="card mt-1">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Fornecedores</h4>
+            <p class="card-category">Gerenciamento de fornecedores</p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <a href="/fornecedores/novo/" class="btn btn-primary">Adicionar fornecedor</a>
+                <hr>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Telefone</th>
+                  <th>Endereço</th>
+                  <th colspan="2">Ações</th>
+                </thead>
+                <tbody>
+                  {% for fornecedor in fornecedores %}
+                  <tr>
+                    <td>{{ fornecedor.id_fornecedor }}</td>
+                    <td>{{ fornecedor.nome }}</td>
+                    <td>{{ fornecedor.email }}</td>
+                    <td>{{ fornecedor.telefone }}</td>
+                    <td>{{ fornecedor.endereco }}</td>
+                    <th><a href="/fornecedores/{{fornecedor.id_fornecedor}}"><i class="material-icons">edit</i></a></th>
+                    <th><button class="btn btn-primary" id="{{ fornecedor.id_fornecedor }}" onclick="javascript:excluir_fornecedor(this.id);"><i class="material-icons">delete</i></button></th>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function excluir_fornecedor(id_fornecedor) {
+    swal({
+        title: 'Excluir',
+        text: 'Tem certeza que deseja excluir este item?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, excluir!',
+        cancelButtonText: 'Não',
+        confirmButtonClass: "btn btn-primary",
+        cancelButtonClass: "btn btn-danger",
+        buttonsStyling: false
+        }).then((result) => {
+            if (result.value) {
+                xhr = new XMLHttpRequest();
+                xhr.open('DELETE', '/fornecedores/' + id_fornecedor + '/');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (xhr.readyState !== 4) return;
+                    if (xhr.status === 200) {
+                        window.location.reload();
+                    } else {
+                        alert('Erro ' + xhr.status);
+                    }
+                };
+                xhr.send();
+            }
+        });
+  }
+</script>
+
+{% endblock %}
