@@ -21,3 +21,9 @@ div#modalMessage.alert.alert-success.col-md-5.mb-5.container-fluid.hide {
         margin-top: 0px;
     }
 }
+
+
+/* LOGIN */
+.form-control.form-rose, .is-focused .form-control.form-rose {
+    background-image: linear-gradient(to top, #ea2c6d 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+}

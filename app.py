@@ -24,8 +24,16 @@ def index():
     from admin.dao.produto_dao import total_produtos
 
     return render_template('admin/index.html', clientes=total_clientes(), fornecedores=total_fornecedores(), 
-                            instituicoes=total_instituicoes(), categorias=total_categorias(), produtos=total_produtos())
+    	instituicoes=total_instituicoes(), categorias=total_categorias(), produtos=total_produtos())
 
+
+@app.route('/login/', methods=['GET'])
+def login():
+	return render_template('admin/login.html'), 200
+	
+@app.route('/recuperar-senha/', methods=['GET'])
+def recuperar_senha():
+    return render_template('admin/recuperar-senha.html'), 200
 
 if __name__ == "__main__":
     criar_bd()
