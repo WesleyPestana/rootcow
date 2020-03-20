@@ -8,7 +8,7 @@ O RootCow é um projeto de e-commerce focado em produtos orgânicos que será di
 
 ## 🎨 Layout
 
-Nossa interface atual é baseada em um template pronto gratuíto desenvolvido pelo grupo <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> para facilitar a manipulação de dados durante o desenvolvimento de nossa interface final.
+Nossa interface atual é baseada em um template pronto gratuíto desenvolvido pelo grupo [Creative Tim](https://www.creative-tim.com/) para facilitar a manipulação de dados durante o desenvolvimento de nossa interface final.
 
 ## 🤔 Como rodar
 

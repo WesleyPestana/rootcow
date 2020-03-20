@@ -1,3 +1,4 @@
+/* Estilos dos alertas antigos */
 div#modalMessage {
     animation-name: show;
     animation-duration: 1900ms;
@@ -20,4 +21,13 @@ div#modalMessage.alert.alert-success.col-md-5.mb-5.container-fluid.hide {
         opacity: 1;
         margin-top: 0px;
     }
+}
+
+.card .card-header-roxo .card-icon,
+.card .card-header-roxo .card-text,
+.card .card-header-roxo:not(.card-header-icon):not(.card-header-text),
+.card.bg-roxo,
+.card.card-rotate.bg-roxo .front,
+.card.card-rotate.bg-roxo .back {
+  background: linear-gradient(60deg, #310081, #310081);
 }

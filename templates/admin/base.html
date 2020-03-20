@@ -88,12 +88,6 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="navbar-wrapper">
                         <a class="navbar-brand" href="/">Dashboard</a>
                     </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                    </button>
                 </div>
             </nav>
             <!-- End Navbar -->
@@ -189,7 +183,7 @@ The above copyright notice and this permission notice shall be included in all c
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-            <script type="text/javascript"> notificacao('top', 'center', 'success', '{{ message|capitalize }}')</script>
+            <script type="text/javascript"> notificacao('top', 'center', '{{ category }}', '{{ message|capitalize }}')</script>
             {% endfor %}
         {% endif %}
     {% endwith %}

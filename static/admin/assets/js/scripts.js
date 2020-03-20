@@ -1,11 +1,11 @@
-/* alertas */
-function hideFlash() {
-	setTimeout(() => {
-		const obj = document.querySelector('#modalMessage')
-		obj.className += ' hide'
-	} , 3000)
-}
-hideFlash()
+/* alertas crud antigo */
+// function hideFlash() {
+// 	setTimeout(() => {
+// 		const obj = document.querySelector('#modalMessage')
+// 		obj.className += ' hide'
+// 	} , 3000)
+// }
+// hideFlash()
 
 /* AJUSTA ACTIVE DO MENU */
 var url_atual = window.location.href;
@@ -53,7 +53,7 @@ function notificacao(from, align, tipo, mensagem) {
 }
 
 /* Excluindo itens */
-function excluir_item(nome_item, id_item) {
+function excluir_item(nome_recurso, id_item) {
 	swal({
 		title: 'Excluir',
 		text: 'Tem certeza que deseja excluir este item?',
@@ -67,7 +67,7 @@ function excluir_item(nome_item, id_item) {
 	}).then((result) => {
 		if (result.value) {
 			xhr = new XMLHttpRequest();
-			xhr.open('DELETE', '/' + nome_item + '/' + id_item + '/');
+			xhr.open('DELETE', '/' + nome_recurso + '/' + id_item + '/');
 			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			xhr.onload = function() {
 				if (xhr.readyState !== 4) return;

@@ -1,0 +1,5 @@
+__pycache__
+.vscode
+venv
+rootcow.db
+start-rootcow.bat
